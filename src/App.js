@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
 
 function App() {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategoryID, setSelectedCategoryID] = useState(9); 
+
+  useEffect(() =>{
+    fetchCategories()
+  }, [])
+
+  async function fetchCategories () {
+    const res = await fetch(`https://opentdb.com/api_category.php`);
+    const data = await res.json();
+    setCategories(data.trivia_categories)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <main>
+        <h1>Quiz App</h1>
+
+        <p>Select a category</p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            //router.push(`/category/${selectedCategoryID}`);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <select
+            value={selectedCategoryID}
+            onChange={(e) => setSelectedCategoryID(e.target.value)}
+          >
+            {categories.map((categorie) => (
+              <option value={`${categorie.id}`} key={categorie.id}>
+                {categorie.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="submit"
+          >
+            Let&apos;s Play
+          </button>
+        </form>
+      </main>
     </div>
   );
 }
