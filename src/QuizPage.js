@@ -33,7 +33,6 @@ const QuizPage = (props) => {
       question: result.question,
       answers: [result.correct_answer, ...result.incorrect_answers].sort(),
     }));
-    console.log(res);
 
     setCategory(category);
     setCorrectAnswers(correct_answers);
@@ -48,6 +47,14 @@ const QuizPage = (props) => {
     setMyAnswers([...myAnswers, e.currentTarget.dataset.answer]);
     setTimeout(() => setStep((prevStep) => prevStep + 1), 300);
   };
+
+  useEffect(() => {
+    const score = myAnswers.reduce((acc, answer, index) => {
+      const point = correctAnswers[index] === answer ? 1 : 0;
+      return point + acc;
+    }, 0);
+    setScore(score);
+  }, [correctAnswers, myAnswers]);
 
   return (
     <main>
