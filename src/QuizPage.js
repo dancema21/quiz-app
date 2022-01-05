@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-//import Result from "../../src/components/Result";
+import Result from "../src/components/Result";
 import Questions from "../src/components/Questions";
 import Timer from "../src/components/Timer";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
@@ -71,7 +71,12 @@ const QuizPage = (props) => {
           />
         </>
       ) : (
-        <div>Result</div>
+        <Result
+          score={score}
+          questions={questions}
+          setStep={setStep}
+          secondsDuration={secondsDuration}
+        />
       )}
     </main>
   );
