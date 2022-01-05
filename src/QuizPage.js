@@ -56,11 +56,23 @@ const QuizPage = (props) => {
     setScore(score);
   }, [correctAnswers, myAnswers]);
 
+  const handlePreviousStep = () => {
+    if (step > 0) {
+      setStep((prevStep) => prevStep - 1);
+    }
+  };
+
+  const handleNextStep = () => {
+    if (step < correctAnswers.length) {
+      setStep((prevStep) => prevStep + 1);
+    }
+  };
+
   return (
-    <main>
+    <>
       {step !== questions.length ? (
         <>
-          <div>
+          <div className="flex justify-between">
             <Timer
               secondsDuration={secondsDuration}
               setSecondsDuration={setSecondsDuration}
@@ -68,7 +80,7 @@ const QuizPage = (props) => {
             />
             <p>Score: {score}</p>
           </div>
-          <h1>{category}</h1>
+          <h2 className="text-center text-lg mb-1 mt-5">{category}</h2>
           <Questions
             questions={questions}
             step={step}
@@ -76,6 +88,12 @@ const QuizPage = (props) => {
             correctAnswers={correctAnswers}
             myAnswers={myAnswers}
           />
+          {questions.length === myAnswers.length && step < questions.length && (
+            <div className="flex justify-between content-between w-1/4 m-auto mt-2 cursor-pointer ">
+              <GrLinkPrevious onClick={handlePreviousStep} />
+              <GrLinkNext onClick={handleNextStep} />
+            </div>
+          )}
         </>
       ) : (
         <Result
@@ -85,7 +103,7 @@ const QuizPage = (props) => {
           secondsDuration={secondsDuration}
         />
       )}
-    </main>
+    </>
   );
 };
 

@@ -20,18 +20,19 @@ const Questions = ({
 }) => {
   return (
     <>
-      <h3>{formatText(questions[step].question)}</h3>
-      <div style={{ paddingLeft: "25px", paddingRight: "25px" }}>
+      <h2 className="font-bold mt-5">{formatText(questions[step].question)}</h2>
+      <div>
         {questions[step].answers.map((answer) => {
           const result =
             correctAnswers[step] === answer ? (
-              <BsCheckCircleFill style={{ color: "green" }} />
+              <BsCheckCircleFill className="text-green-500" />
             ) : (
-              <AiFillCloseCircle style={{ color: "red" }} />
+              <AiFillCloseCircle className="text-red-500" />
             );
 
-          const classname =
-            myAnswers[step] === answer ? "answer selected" : "answer";
+          let classname =
+            "bg-amber-400 hover:bg-amber-700 text-white py-2 px-4 relative rounded-full my-2 px-5";
+          if (myAnswers[step] === answer) classname += " font-bold";
 
           return (
             <div
@@ -41,11 +42,13 @@ const Questions = ({
               onClick={handleClick}
             >
               {formatText(answer)}
-              {myAnswers[step] && <div className="result">{result}</div>}
+              {myAnswers[step] && (
+                <div className="absolute top-3 right-2">{result}</div>
+              )}
             </div>
           );
         })}
-        <p>
+        <p className="text-center mt-5">
           Progress : {step + 1} / {questions.length}{" "}
         </p>
       </div>
