@@ -1,48 +1,16 @@
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage";
+import QuizPage from "./QuizPage";
 
 function App() {
-  const [categories, setCategories] = useState([]);
-  const [selectedCategoryID, setSelectedCategoryID] = useState(9); 
-
-  useEffect(() =>{
-    fetchCategories()
-  }, [])
-
-  async function fetchCategories () {
-    const res = await fetch(`https://opentdb.com/api_category.php`);
-    const data = await res.json();
-    setCategories(data.trivia_categories)
-  }
-
   return (
     <div className="App">
-      <main>
-        <h1>Quiz App</h1>
-
-        <p>Select a category</p>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            //router.push(`/category/${selectedCategoryID}`);
-          }}
-        >
-          <select
-            value={selectedCategoryID}
-            onChange={(e) => setSelectedCategoryID(e.target.value)}
-          >
-            {categories.map((categorie) => (
-              <option value={`${categorie.id}`} key={categorie.id}>
-                {categorie.name}
-              </option>
-            ))}
-          </select>
-          <button
-            type="submit"
-          >
-            Let&apos;s Play
-          </button>
-        </form>
-      </main>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/category/:id" element={<QuizPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
