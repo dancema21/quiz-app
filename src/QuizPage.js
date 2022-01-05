@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 //import Result from "../../src/components/Result";
 import Questions from "../src/components/Questions";
-//import Timer from "../../src/components/Timer";
+import Timer from "../src/components/Timer";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 const QuizPage = (props) => {
@@ -12,7 +12,7 @@ const QuizPage = (props) => {
   const [step, setStep] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [myAnswers, setMyAnswers] = useState([]);
-  //const [secondsDuration, setSecondsDuration] = useState(0);
+  const [secondsDuration, setSecondsDuration] = useState(0);
   const [score, setScore] = useState(0);
   let { id } = useParams();
 
@@ -54,7 +54,11 @@ const QuizPage = (props) => {
       {step !== questions.length ? (
         <>
           <div>
-            Timer
+            <Timer
+              secondsDuration={secondsDuration}
+              setSecondsDuration={setSecondsDuration}
+              isOver={questions.length === myAnswers.length}
+            />
             <p>Score: {score}</p>
           </div>
           <h1>{category}</h1>
