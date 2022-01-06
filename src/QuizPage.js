@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
 import Result from "../src/components/Result";
 import Questions from "../src/components/Questions";
 import Timer from "../src/components/Timer";
-import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
-import { useParams } from "react-router-dom";
+import Spinner from "./components/Spinner";
+
 const QuizPage = (props) => {
   const [questions, setQuestions] = useState([]);
   const [category, setCategory] = useState();
@@ -14,6 +17,8 @@ const QuizPage = (props) => {
   const [myAnswers, setMyAnswers] = useState([]);
   const [secondsDuration, setSecondsDuration] = useState(0);
   const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   let { id } = useParams();
 
   useEffect(() => {
@@ -21,22 +26,30 @@ const QuizPage = (props) => {
   }, []);
 
   async function fetchQuestions(id) {
-    console.log(id);
-    const quizData = await fetch(
-      `https://opentdb.com/api.php?amount=10&type=multiple&category=${id}`
-    );
-    const res = await quizData.json();
+    try {
+      const quizData = await fetch(
+        `https://opentdb.com/api.php?amount=10&type=multiple&category=${id}`
+      );
+      const res = await quizData.json();
 
-    const category = res.results[0].category;
-    const correct_answers = res.results.map((result) => result.correct_answer);
-    const questions = res.results.map((result) => ({
-      question: result.question,
-      answers: [result.correct_answer, ...result.incorrect_answers].sort(),
-    }));
+      const category = res.results[0].category;
+      const correct_answers = res.results.map(
+        (result) => result.correct_answer
+      );
+      const questions = res.results.map((result) => ({
+        question: result.question,
+        answers: [result.correct_answer, ...result.incorrect_answers].sort(),
+      }));
 
-    setCategory(category);
-    setCorrectAnswers(correct_answers);
-    setQuestions(questions);
+      setCategory(category);
+      setCorrectAnswers(correct_answers);
+      setQuestions(questions);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+      setError(true);
+    }
   }
 
   const handleClick = (e) => {
@@ -67,6 +80,18 @@ const QuizPage = (props) => {
       setStep((prevStep) => prevStep + 1);
     }
   };
+
+  if (loading) return <Spinner />;
+
+  if (error)
+    return (
+      <>
+        <h1 className="text-center mb-2 text-lg font-bold">Quiz App</h1>
+        <div className="font-bold text-lg mt-15 text-rose-500 text-center">
+          App is not available for now, try again later
+        </div>
+      </>
+    );
 
   return (
     <>
