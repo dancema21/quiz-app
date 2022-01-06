@@ -11,7 +11,6 @@ import Spinner from "./components/Spinner";
 const QuizPage = (props) => {
   const [questions, setQuestions] = useState([]);
   const [category, setCategory] = useState();
-  //const router = useRouter();
   const [step, setStep] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [myAnswers, setMyAnswers] = useState([]);

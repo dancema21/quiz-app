@@ -15,13 +15,11 @@ const Result = ({ score, questions, setStep, secondsDuration }) => {
         {secondsDuration % 60} seconds
       </p>
 
-      <p className="font-bold text-center mt-5">
-        {score > 5 ? (
-          <h3>You passed the quiz 🥳</h3>
-        ) : (
-          <h3>You failed the quiz 😢</h3>
-        )}
-      </p>
+      {score > 5 ? (
+        <h3 className="font-bold text-center m-5">You passed the quiz 🥳</h3>
+      ) : (
+        <h3 className="font-bold text-center m-5">You failed the quiz 😢</h3>
+      )}
 
       <div className="flex flex-col justify-center items-center h-100">
         <button className="bg-amber-400 hover:bg-amber-700 text-white py-2 px-4 relative rounded-full my-2 px-5">
