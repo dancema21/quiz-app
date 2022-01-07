@@ -21,8 +21,8 @@ Practice and test your knowledge by answering questions in a quiz application.
 
 📑 User Stories
 
-    - ✅ User can select category of quiz
-    - ✅ User can choose answer
+    - ✅ User can select a category of questions
+    - ✅ User can select an answer to a question
     - ✅ User can see the result of the quiz
     - ✅ User can check the correct answers
     - ✅ User can see how long he completed the quiz
