@@ -31,3 +31,5 @@ Practice and test your knowledge by answering questions in a quiz application.
 ### Tech
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Styling is done using Tailwind CSS.
+Quiz categories, questions and answers are taken from [Open Trivia Database API](https://opentdb.com/).
