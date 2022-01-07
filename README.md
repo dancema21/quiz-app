@@ -6,10 +6,10 @@ This project was made as part of the weekly programming challenge hosted by [Dev
 
 ### [Live Demo](https://dancema21.github.io/quiz-app/)
 
-![SelectCategory](https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/StartQuizView.png)
-![Question](https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/QuestionQuiz.png)
-![Result](https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/ResultQuiz.png)
-![CheckAnswer](https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/CheckAnswerQuiz.png)
+<img href="https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/StartQuizView.png" alt="SelectCategory" width="250">
+<img href="https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/QuestionQuiz.png" alt="Question" width="250">
+<img href="https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/ResultQuiz.png" alt="Result" width="250">
+<img href="https://github.com/dancema21/quiz-app/blob/58dfba7b4d5783210772ca09e350cfec838aef6c/public/CheckAnswerQuiz.png" alt="check answers" width="250">
 
 ### About the Challenge
 
